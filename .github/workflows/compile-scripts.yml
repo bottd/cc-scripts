@@ -25,7 +25,6 @@ jobs:
         run: |
           shopt -s extglob
           rm -rf !("build")
-          ls
 
       - name: Move build to root
         run: mv build/* .
@@ -34,7 +33,8 @@ jobs:
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
-          git commit -a -m "Update files"
+          git add -A
+          git commit -m "Update files"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
