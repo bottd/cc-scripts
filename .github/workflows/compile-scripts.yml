@@ -21,16 +21,6 @@ jobs:
       - name: Compile
         run: make
 
-      - name: Remove all files and directories except /build
-        run: |
-          shopt -s extglob
-          rm -rf !("build"|"."|"..")
-
-      - name: Move build directory contents to root
-        run: |
-          mv build/* .
-          rm -rf build/
-
       - name: Commit changes
         run: |
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -41,5 +31,6 @@ jobs:
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          directory: build
           branch: build
           force: true
