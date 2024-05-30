@@ -28,7 +28,7 @@ jobs:
           ls
 
       - name: Move build to root
-        run: mv /build/* /
+        run: mv build/* .
 
       - name: Commit changes
         run: |
