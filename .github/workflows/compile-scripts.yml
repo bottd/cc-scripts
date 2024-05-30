@@ -26,6 +26,9 @@ jobs:
           shopt -s extglob
           rm -rf !("build"|"."|"..")
 
+      - name: Print build dir
+        run: ls build
+
       - name: Move build directory contents to root
         run: |
           mv build/* .
