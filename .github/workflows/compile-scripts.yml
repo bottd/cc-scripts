@@ -26,16 +26,16 @@ jobs:
           shopt -s extglob
           rm -rf !("build"|"."|"..")
 
-      - name: Print build dir
-        run: ls build
-
       - name: Move build directory contents to root
         run: |
           mv build/* .
           rm -rf build/
 
       - name: Commit changes
-        run: git commit -a -m "Update files"
+        run: |
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Update files"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
