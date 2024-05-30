@@ -25,6 +25,7 @@ jobs:
         run: |
           shopt -s extglob
           rm -rf !("build")
+          ls
 
       - name: Move build to root
         run: mv /build/* /
