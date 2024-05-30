@@ -35,7 +35,7 @@ jobs:
           rm -rf build/
 
       - name: Commit changes
-        run: git commit -a "Update files"
+        run: git commit -a -m "Update files"
 
       - name: Push changes
         uses: ad-m/github-push-action@master
