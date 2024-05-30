@@ -1,0 +1,38 @@
+name: "Compile ComputerCraft scripts"
+
+# Compiles scripts and pushes to build branch for use in game
+
+on:
+  push:
+    branches: [ main ]
+jobs:
+  build-scripts:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+    steps:
+      - uses: actions/checkout@main
+
+      - uses: leafo/gh-actions-luarocks@master
+
+      - name: Install Fennel
+        run: luarocks install fennel
+
+      - name: Compile
+        run: make
+
+      - name: Remove all files and directories except /build
+        run: |
+          shopt -s extglob
+          rm -rf !("build"|"."|"..")
+
+      - name: Move build directory contents to root
+        run: |
+          mv build/* .
+          rm -rf build/
+
+      - name: Commit and push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: build
