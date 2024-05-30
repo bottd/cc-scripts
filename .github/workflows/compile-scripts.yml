@@ -31,7 +31,10 @@ jobs:
           mv build/* .
           rm -rf build/
 
-      - name: Commit and push changes
+      - name: Commit changes
+        run: git commit -a "Update files"
+
+      - name: Push changes
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
