@@ -17,7 +17,7 @@
   (local event [(os.pullEvent)])
   (case event
     [:rednet_message] (when (not= (?. event 4) :dns) 
-                        (rednet.send (. event 2) (build_message)))
+      (rednet.send (. event 2) (build_message)))
     ["Redstone change"] (when (not= is_day (redstone.getInput :top))
       (set is_day (not is_day))
       (rednet.broadcast (build_message) broadcast_protocol))))
