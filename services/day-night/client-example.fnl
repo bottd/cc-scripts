@@ -1,5 +1,0 @@
-(peripheral.find :modem rednet.open)
-(local day_night_id (rednet.lookup :service :day_night))
-(rednet.send day_night_id)
-(local [id message] (rednet.receive))
-(print message)
